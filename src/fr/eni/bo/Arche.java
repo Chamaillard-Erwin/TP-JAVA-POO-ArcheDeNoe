@@ -1,7 +1,13 @@
+/**
+ * Classe de l'arche contenant beaucoup de méthode
+ * l'arche permet d'effectuer différentes vérification et affiche des informations en fonction de l'ajout d'animaux
+ * permet également de compter la nourriture requise pour le voyage
+ */
+
+
 package fr.eni.bo;
 
 import fr.eni.bo.animal.Animal;
-import fr.eni.bo.animal.Espece;
 import fr.eni.bo.animal.individu.*;
 
 public class Arche {

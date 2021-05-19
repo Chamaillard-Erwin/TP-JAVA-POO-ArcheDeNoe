@@ -1,12 +1,18 @@
+/**
+ * Classe qui possède quelque méthodes utilitaires comme l'affichage des infos du menu
+ * mais aussi les informations rentré par l'utilisateur dans le but de déchargé un peu la méthode main
+ * @author echamaillard
+ */
+
 package fr.eni.main;
 
-import fr.eni.bo.animal.Animal;
 import fr.eni.bo.animal.Espece;
 import fr.eni.bo.animal.Sexe;
 
 import java.util.Scanner;
 
 public class Saisie {
+    //Attributs nécéssaire pour la saisie
     Scanner scan = new Scanner(System.in);
     String saisie;
     String nom;
@@ -14,8 +20,9 @@ public class Saisie {
     int choixEspece;
     Sexe[] sexeTab = Sexe.values();
     Espece[] especeTab = Espece.values();
+    char finAjout;
 
-
+    //GETTERS
     public String getNom() {
         return nom;
     }
@@ -32,8 +39,9 @@ public class Saisie {
         return finAjout;
     }
 
-    char finAjout;
-
+    /**
+     * Méthode pour afficher un dessin dans le but de faire le mariole
+     */
     public void afficherDessin() {
         System.out.println("");
         System.out.println("_______");
@@ -43,6 +51,10 @@ public class Saisie {
         System.out.println("|_____|_______________________/");
     }
 
+    /**
+     * Méthode pour demande si l'utilisateur veut ajouter un autre animal
+     * @return
+     */
     public char demanderAutreAnimal() {
         System.out.println("Voulez-vous ajouter un animal ?");
         saisie = scan.nextLine().toUpperCase();
@@ -50,11 +62,21 @@ public class Saisie {
         return finAjout;
     }
 
+    /**
+     * Méthode pour demande un nom d'animal
+     * Retourne localement un char
+     * @return
+     */
     public void demanderNom() {
         System.out.println("Quel est son nom ?");
         this.nom = scan.nextLine();
     }
 
+    /**
+     * Méthode pour demander le sexe
+     * Retourne localement un int
+     * @return
+     */
     public int demanderSexe() {
         System.out.print("Quels est son sexe ? ");
         afficherSexe();
@@ -63,6 +85,11 @@ public class Saisie {
         return this.choixSexe;
     }
 
+    /**
+     * Méthode pour demander l'espece à l'animal
+     * Retourne un int
+     * @return
+     */
     public int demanderEspece() {
         System.out.print("Quel est son espece ? ");
         afficherEspece();
@@ -71,6 +98,9 @@ public class Saisie {
         return this.choixEspece;
     }
 
+    /**
+     * Méthode pour afficher les choix de sexe dynamiquement
+     */
     public void afficherSexe() {
         for (Sexe sexe : sexeTab) {
             System.out.print(sexe.ordinal() + "-" + sexe.toString() + " ");
@@ -78,6 +108,9 @@ public class Saisie {
         System.out.println();
     }
 
+    /**
+     * Méthode pour afficher les choix d'espèce dynamiquement
+     */
     public void afficherEspece() {
         for (Espece espece : especeTab) {
             System.out.print(espece.ordinal() + "-" + espece.toString() + " ");

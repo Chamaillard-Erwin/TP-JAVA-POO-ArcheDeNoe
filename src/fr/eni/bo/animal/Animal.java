@@ -2,6 +2,7 @@ package fr.eni.bo.animal;
 
 public abstract class Animal {
 
+    //Atributs de classe
     protected String nom;
     protected Sexe sexe;
 
