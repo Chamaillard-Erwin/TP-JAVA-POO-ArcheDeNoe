@@ -2,8 +2,7 @@ package fr.eni.bo;
 
 import fr.eni.bo.animal.Animal;
 import fr.eni.bo.animal.Espece;
-import fr.eni.bo.animal.individu.Carnivore;
-import fr.eni.bo.animal.individu.Herbivore;
+import fr.eni.bo.animal.individu.*;
 
 public class Arche {
     //Constante de l'instance
@@ -13,10 +12,6 @@ public class Arche {
 
     //Attribut(s) de l'instance
     private Animal[] animalTab;
-    private int cptChats;
-    private int cptChiens;
-    private int cptGorilles;
-    private int cptLapins;
     private int nbVegetaux;
     private int poidsViande;
 
@@ -44,8 +39,8 @@ public class Arche {
      * Méthode pour afficher le contenu de l'arche
      */
     public void afficherArche() {
-        System.out.println("L'arche possède à son bord, " + cptChats + " chat(s), " + cptChiens + " chien(s), "
-        + cptGorilles + " gorille(s), " + cptLapins + " lapin(s)");
+        System.out.println("L'arche possède à son bord, " + compterTypeAnimaux(Chat.class.getName()) + " chat(s), " + compterTypeAnimaux(Chien.class.getName()) + " chien(s), "
+        + compterTypeAnimaux(Gorille.class.getName()) + " gorille(s), " + compterTypeAnimaux(Lapin.class.getName()) + " lapin(s)");
     }
 
     /**
@@ -114,41 +109,24 @@ public class Arche {
         return false;
     }
 
+    /**
+     * Méthode pour compter le nombre d'animaux par type de classe
+     * @param nomClasse
+     * @return
+     */
+    public int compterTypeAnimaux(String nomClasse) {
+        int cpt = 0;
+        for (Animal animal : this.animalTab) {
+            if (animal != null && animal.getClass().getName().equals(nomClasse)) {
+                cpt++;
+            }
+        }
+        return cpt;
+    }
+
     //GETTERS
     public Animal[] getAnimalTab() {
         return this.animalTab;
     }
 
-    public int getCptChats() {
-        return cptChats;
-    }
-
-    public int getCptChiens() {
-        return cptChiens;
-    }
-
-    public int getCptGorilles() {
-        return cptGorilles;
-    }
-
-    public int getCptLapins() {
-        return cptLapins;
-    }
-
-    //SETTERS
-    public void setCptChats(int cptChats) {
-        this.cptChats = cptChats;
-    }
-
-    public void setCptChiens(int cptChiens) {
-        this.cptChiens = cptChiens;
-    }
-
-    public void setCptGorilles(int cptGorilles) {
-        this.cptGorilles = cptGorilles;
-    }
-
-    public void setCptLapins(int cptLapins) {
-        this.cptLapins = cptLapins;
-    }
 }
