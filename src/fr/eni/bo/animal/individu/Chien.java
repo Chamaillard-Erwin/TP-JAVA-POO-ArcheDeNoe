@@ -7,4 +7,9 @@ public class Chien extends Carnivore {
     public Chien(String nom, Sexe sexe) {
         super(nom, sexe);
     }
+
+
+
+
+
 }

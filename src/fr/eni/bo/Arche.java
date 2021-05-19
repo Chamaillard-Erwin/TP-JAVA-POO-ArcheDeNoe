@@ -29,7 +29,7 @@ public class Arche {
      * @param animal
      */
     public void ajouterAnimal(Animal animal) {
-        if (!verifArchePleine()) {
+        if (!verifArchePleine() && !verifierIndividualite(animal)) {
             for (int i = 0; i < this.animalTab.length; i++) {
                 if (this.animalTab[i] == null) {
                     this.animalTab[i] = animal;
@@ -89,11 +89,30 @@ public class Arche {
         return this.poidsViande * NBJOURS;
     }
 
+    /**
+     * Méthode pour afficher la nourriture requise
+     */
     public void afficherNourritureRequise() {
         System.out.printf("Le commis doit avoir, à bord, %d végétaux et %dkg de viande", calculerNbVegetaux(), calculerPoidsViande());
     }
 
-
+    /**
+     *Méthode pour vérifier l'unicité (Merci SQL) de l'animal
+     * Return TRUE si l'animal existe
+     * @param animal
+     * @return
+     */
+    public boolean verifierIndividualite(Animal animal) {
+        for (Animal vl_animal : this.animalTab) {
+            if (vl_animal != null
+                    && vl_animal.getClass().getName().equals(animal.getClass().getName())
+                    && vl_animal.getSexe().equals(animal.getSexe())) {
+                System.out.println("Animal déjà existant");
+                return true;
+            }
+        }
+        return false;
+    }
 
     //GETTERS
     public Animal[] getAnimalTab() {
