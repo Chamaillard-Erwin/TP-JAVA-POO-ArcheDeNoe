@@ -89,6 +89,9 @@ public class Saisie {
                 System.err.println("Erreur de saisie, veuillez recommencer.");
                 this.choixSexe = -1;
             }
+            if (this.choixSexe < 0 || this.choixSexe >= Sexe.values().length) {
+                System.err.println("Saisie incorrect, veuillez saisir un chiffre compris entre 0 et " + (Sexe.values().length - 1));
+            }
         }while (this.choixSexe < 0 || this.choixSexe >= Sexe.values().length);
 
         return this.choixSexe;
@@ -111,6 +114,9 @@ public class Saisie {
             catch (InputMismatchException e) {
                 System.err.println("Erreur de saisie, veuillez recommencer.");
                 this.choixEspece = -1;
+            }
+            if (this.choixEspece < 0 || this.choixEspece >= Espece.values().length) {
+                System.err.println("Saisie incorrect, veuillez saisir un chiffre compris entre 0 et " + ((Espece.values().length) -1 ));
             }
         }while (this.choixEspece < 0 || this.choixEspece >= Espece.values().length);
 

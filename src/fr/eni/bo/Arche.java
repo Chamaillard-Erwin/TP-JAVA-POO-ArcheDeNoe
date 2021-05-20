@@ -21,6 +21,7 @@ public class Arche {
     private int nbVegetaux;
     private int poidsViande;
 
+
     public Arche(int nbPlaces) {
         this.animalTab = new Animal[nbPlaces];
     }

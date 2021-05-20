@@ -9,4 +9,9 @@ public class Carnivore extends Animal {
         super(nom, sexe);
     }
 
+    @Override
+    public boolean isInstance(Object obj) {
+        return false;
+    }
+
 }

@@ -20,4 +20,5 @@ public abstract class Animal {
         return sexe;
     }
 
+    public abstract boolean isInstance(Object obj);
 }
