@@ -36,19 +36,26 @@ public class Saisie {
 
     /**
      * Méthode pour demande si l'utilisateur veut ajouter un autre animal
+     * On boucle tant que les caractères ne sont pas bon
      * @return
      */
     public char demanderAutreAnimal() {
-        Scanner scan = new Scanner(System.in);
-        System.out.println("Voulez-vous ajouter un animal O/N ?");
-        saisie = scan.nextLine().toUpperCase();
-        finAjout = saisie.charAt(0);
+        do {
+            Scanner scan = new Scanner(System.in);
+            System.out.println("Voulez-vous ajouter un animal O/N ?");
+            saisie = scan.nextLine().toUpperCase();
+            finAjout = saisie.charAt(0);
+            if (finAjout != 'O' && finAjout != 'N') {
+                System.err.println("Saisie incorrecte : Choissez entre 'O' ou 'N'");
+            }
+        }while(finAjout != 'O' && finAjout != 'N');
         return finAjout;
     }
 
     /**
      * Méthode pour demande un nom d'animal
-     * Retourne localement un char
+     * Retourne localement un int
+     * On reboucle tant que l'utilisateur n'as pas rentré un chiffre cohérent
      * @return
      */
     public void demanderNom() {
@@ -65,6 +72,7 @@ public class Saisie {
     /**
      * Méthode pour demander le sexe
      * Retourne localement un int
+     * On reboucle tant que l'utilisateur n'as pas rentré un chiffre cohérent
      * @return
      */
     public int demanderSexe(){
