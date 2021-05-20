@@ -6,8 +6,8 @@ import fr.eni.bo.animal.individu.Chat;
 import fr.eni.bo.animal.individu.Chien;
 import fr.eni.bo.animal.individu.Gorille;
 import fr.eni.bo.animal.individu.Lapin;
-import java.util.Scanner;
 
+import java.util.InputMismatchException;
 
 public class Main {
     public static void main(String[] args) {
@@ -24,6 +24,7 @@ public class Main {
          * Boucle principale
          */
         while(!arche.verifArchePleine() && s.getFinAjout() == 'O') {
+
             //On demande les infos de l'animal
             s.demanderNom();
             s.demanderSexe();

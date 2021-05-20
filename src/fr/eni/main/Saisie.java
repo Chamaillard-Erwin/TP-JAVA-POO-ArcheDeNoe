@@ -9,6 +9,7 @@ package fr.eni.main;
 import fr.eni.bo.animal.Espece;
 import fr.eni.bo.animal.Sexe;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Saisie {
@@ -21,23 +22,6 @@ public class Saisie {
     Sexe[] sexeTab = Sexe.values();
     Espece[] especeTab = Espece.values();
     char finAjout;
-
-    //GETTERS
-    public String getNom() {
-        return nom;
-    }
-
-    public int getChoixSexe() {
-        return choixSexe;
-    }
-
-    public int getChoixEspece() {
-        return choixEspece;
-    }
-
-    public char getFinAjout() {
-        return finAjout;
-    }
 
     /**
      * Méthode pour afficher un dessin dans le but de faire le mariole
@@ -56,7 +40,7 @@ public class Saisie {
      * @return
      */
     public char demanderAutreAnimal() {
-        System.out.println("Voulez-vous ajouter un animal ?");
+        System.out.println("Voulez-vous ajouter un animal O/N ?");
         saisie = scan.nextLine().toUpperCase();
         finAjout = saisie.charAt(0);
         return finAjout;
@@ -68,8 +52,13 @@ public class Saisie {
      * @return
      */
     public void demanderNom() {
-        System.out.println("Quel est son nom ?");
-        this.nom = scan.nextLine();
+        do {
+            System.out.println("Quel est son nom ? (Pas plus de 20 caractères)");
+            this.nom = scan.nextLine();
+            if (this.nom.length() > 20) {
+                System.err.println("Le nom est trop long, veuillez recommencer");
+            }
+        }while (this.nom.length() > 20);
     }
 
     /**
@@ -118,4 +107,20 @@ public class Saisie {
         System.out.println();
     }
 
+    //GETTERS
+    public String getNom() {
+        return nom;
+    }
+
+    public int getChoixSexe() {
+        return choixSexe;
+    }
+
+    public int getChoixEspece() {
+        return choixEspece;
+    }
+
+    public char getFinAjout() {
+        return finAjout;
+    }
 }
