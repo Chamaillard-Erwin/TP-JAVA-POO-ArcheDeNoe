@@ -1,6 +1,7 @@
 package fr.eni.main;
 
 import fr.eni.bo.Arche;
+import fr.eni.bo.animal.Espece;
 import fr.eni.bo.animal.Sexe;
 import fr.eni.bo.animal.individu.Chat;
 import fr.eni.bo.animal.individu.Chien;
@@ -26,9 +27,13 @@ public class Main {
         while(!arche.verifArchePleine() && s.getFinAjout() == 'O') {
 
             //On demande les infos de l'animal
+            System.err.println(Espece.values().length);
+            System.err.println(Sexe.values().length);
             s.demanderNom();
             s.demanderSexe();
             s.demanderEspece();
+            System.err.println(s.getChoixSexe());
+            System.err.println(s.getChoixEspece());
             //En fonction du choix de l'espece on creer une instance de la classe correspondante
             switch (s.getChoixEspece()) {
                 case 0 :

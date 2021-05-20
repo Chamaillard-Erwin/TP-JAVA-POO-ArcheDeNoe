@@ -14,7 +14,6 @@ import java.util.Scanner;
 
 public class Saisie {
     //Attributs nécéssaire pour la saisie
-    Scanner scan = new Scanner(System.in);
     String saisie;
     String nom;
     int choixSexe;
@@ -40,6 +39,7 @@ public class Saisie {
      * @return
      */
     public char demanderAutreAnimal() {
+        Scanner scan = new Scanner(System.in);
         System.out.println("Voulez-vous ajouter un animal O/N ?");
         saisie = scan.nextLine().toUpperCase();
         finAjout = saisie.charAt(0);
@@ -52,6 +52,7 @@ public class Saisie {
      * @return
      */
     public void demanderNom() {
+        Scanner scan = new Scanner(System.in);
         do {
             System.out.println("Quel est son nom ? (Pas plus de 20 caractères)");
             this.nom = scan.nextLine();
@@ -66,11 +67,22 @@ public class Saisie {
      * Retourne localement un int
      * @return
      */
-    public int demanderSexe() {
-        System.out.print("Quels est son sexe ? ");
-        afficherSexe();
-        this.choixSexe = scan.nextInt();
-        scan.nextLine();
+    public int demanderSexe(){
+
+        do {
+            Scanner scan = new Scanner(System.in);
+            try{
+                System.out.print("Quel est son sexe ? ");
+                afficherSexe();
+                this.choixSexe = scan.nextInt();
+                scan.nextLine();
+            }
+            catch(InputMismatchException e) {
+                System.err.println("Erreur de saisie, veuillez recommencer.");
+                this.choixSexe = -1;
+            }
+        }while (this.choixSexe < 0 || this.choixSexe >= Sexe.values().length);
+
         return this.choixSexe;
     }
 
@@ -79,11 +91,21 @@ public class Saisie {
      * Retourne un int
      * @return
      */
-    public int demanderEspece() {
-        System.out.print("Quel est son espece ? ");
-        afficherEspece();
-        this.choixEspece = scan.nextInt();
-        scan.nextLine();
+    public int demanderEspece(){
+        do {
+            Scanner scan = new Scanner(System.in);
+            try {
+                System.out.print("Quel est son espece ? ");
+                afficherEspece();
+                this.choixEspece = scan.nextInt();
+                scan.nextLine();
+            }
+            catch (InputMismatchException e) {
+                System.err.println("Erreur de saisie, veuillez recommencer.");
+                this.choixEspece = -1;
+            }
+        }while (this.choixEspece < 0 || this.choixEspece >= Espece.values().length);
+
         return this.choixEspece;
     }
 
@@ -123,4 +145,5 @@ public class Saisie {
     public char getFinAjout() {
         return finAjout;
     }
+
 }
