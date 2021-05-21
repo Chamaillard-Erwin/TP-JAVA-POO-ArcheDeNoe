@@ -10,20 +10,24 @@ package fr.eni.bo;
 import fr.eni.bo.animal.Animal;
 import fr.eni.bo.animal.individu.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Arche {
     //Constante de l'instance
     private final int NBJOURS = 10;
     private final int VEGETAUXPARJOUR = 10;
     private final int VIANDEPARJOUR = 30;
+    private final int MAX_ANIMAL = 10;
 
     //Attribut(s) de l'instance
-    private Animal[] animalTab;
+    private List<Animal> animalList;
     private int nbVegetaux;
     private int poidsViande;
 
 
     public Arche(int nbPlaces) {
-        this.animalTab = new Animal[nbPlaces];
+        this.animalList = new ArrayList<>();
     }
 
     /**
@@ -32,13 +36,8 @@ public class Arche {
      */
     public void ajouterAnimal(Animal animal) {
         if (!verifArchePleine() && !verifierIndividualite(animal)) {
-            for (int i = 0; i < this.animalTab.length; i++) {
-                if (this.animalTab[i] == null) {
-                    this.animalTab[i] = animal;
-                    System.out.printf("L'animal %s est dans l'arche. (capacité %d/%d)%n", this.animalTab[i].getNom(), (i +1), this.animalTab.length);
-                    break;
-                }
-            }
+            animalList.add(animal);
+            System.out.printf("L'animal %s est dans l'arche. (capacité %d/%d)%n", animal.getNom(), animalList.size(), this.MAX_ANIMAL);
         }
     }
 
@@ -55,12 +54,12 @@ public class Arche {
      * @return
      */
     public boolean verifArchePleine() {
-        for (Animal animal : this.animalTab) {
-            if (animal == null) {
-                return false;
-            }
+        if (this.animalList.size() == 10) {
+            return true;
         }
-        return true;
+        else {
+            return false;
+        }
     }
 
     /**
@@ -69,7 +68,7 @@ public class Arche {
      * @return
      */
     public int calculerNbVegetaux() {
-        for (Animal animal : this.animalTab) {
+        for (Animal animal : this.animalList) {
             if (animal instanceof Herbivore) {
                 this.nbVegetaux += this.VEGETAUXPARJOUR;
             }
@@ -83,7 +82,7 @@ public class Arche {
      * @return
      */
     public int calculerPoidsViande() {
-        for (Animal animal : this.animalTab) {
+        for (Animal animal : this.animalList) {
             if (animal instanceof Carnivore) {
                 this.poidsViande += this.VIANDEPARJOUR;
             }
@@ -105,9 +104,8 @@ public class Arche {
      * @return
      */
     public boolean verifierIndividualite(Animal animal) {
-        for (Animal vl_animal : this.animalTab) {
-            if (vl_animal != null
-                    && vl_animal.getClass().getName().equals(animal.getClass().getName())
+        for (Animal vl_animal : this.animalList) {
+            if ( vl_animal.getClass().getName().equals(animal.getClass().getName())
                     && vl_animal.getSexe().equals(animal.getSexe())) {
                 System.out.println("Animal déjà existant");
                 return true;
@@ -123,17 +121,15 @@ public class Arche {
      */
     public int compterTypeAnimaux(String nomClasse) {
         int cpt = 0;
-        for (Animal animal : this.animalTab) {
-            if (animal != null && animal.getClass().getName().equals(nomClasse)) {
+        for (Animal animal : this.animalList) {
+            if (animal.getClass().getName().equals(nomClasse)) {
                 cpt++;
             }
         }
         return cpt;
     }
 
-    //GETTERS
-    public Animal[] getAnimalTab() {
-        return this.animalTab;
+    public List<Animal> getAnimalList() {
+        return animalList;
     }
-
 }
